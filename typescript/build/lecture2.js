@@ -57,6 +57,7 @@ var square = (function () {
 //outputted all 5s, forloop completes before half a second and i=5
 //then the timeout function catches up
 for (var i = 0; i < 5; i++) {
+    setTimeout(function () { console.log(i); }, 500);
 }
 //closures
 //num gets passed into this function and this function remembers it
@@ -64,9 +65,11 @@ function makeNumPrinter(num) {
     // var localNum = num;
     // var printFunc = function () { console.log(localNum) }
     // return printFunc;
+    //shorter way:
     return function () { console.log(num); };
 }
 for (var i = 0; i < 5; i++) {
+    setTimeout(makeNumPrinter(i), 500);
 }
 var _loop_1 = function (i_1) {
     // we dont gotta do all that mess ^^

@@ -68,7 +68,7 @@ class square {
 //outputted all 5s, forloop completes before half a second and i=5
 //then the timeout function catches up
 for(var i=0; i<5; i++){
-   // setTimeout(function() { console.log(i); }, 500);
+   setTimeout(function() { console.log(i); }, 500);
 }
 
 //closures
@@ -78,10 +78,12 @@ function makeNumPrinter(num) {
 	// var printFunc = function () { console.log(localNum) }
 	// return printFunc;
 
+	//shorter way:
+	
 	return function () { console.log(num) };
 }
 for (var i = 0; i < 5; i++) {
-	// setTimeout(makeNumPrinter(i), 500);
+	setTimeout(makeNumPrinter(i), 500);
 }
 
 //block scoping
