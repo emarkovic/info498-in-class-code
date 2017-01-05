@@ -79,7 +79,6 @@ function makeNumPrinter(num) {
 	// return printFunc;
 
 	//shorter way:
-	
 	return function () { console.log(num) };
 }
 for (var i = 0; i < 5; i++) {
