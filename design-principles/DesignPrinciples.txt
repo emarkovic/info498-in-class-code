@@ -1,0 +1,96 @@
+Design Principles
+- Single Responsibility Principle
+	- each class does only one thing.
+	- a component should have one and only reason to change.
+	- important because
+		- changing one part doesn't break anything
+		- helps re-usability
+		- this helps us do less work later
+- program to interfaces, not to implementations
+	- interact w/ something that is abstracted
+	- we want to program in an abstracted way, leave out the implementation
+	- important because
+		- you can change implementation without changing how it is used - encapsulation
+- interface segregration principle
+	- interface to a module: a set of functions that the class has to implement 
+		- how we interact w/ that class
+	- segregation - to keep separate
+	- segregating interfaces - clients should not be forced to implement interfaces they do not use
+	- encapsulation? 
+	- important because - keeps users expectations reasonable.
+- open-closed principle
+	- components should be open for extension, closed for modification
+	- benefits	
+		- keeps fields and implementation encapsulated
+- Liskov Substitution Principle
+	- any objects should be replacedable with their subtypes without altering the correctness of the program
+	- if S is a subtype of T, then T can be replaces with S.
+- principle of lease knowledge (law of demeter)
+	- talk only to your intimate friends and not to friends of friends
+	- things we dont want to call functions on 
+- Dependency Inversion Principle
+	- depend on abstractions not on actual classes
+	- high level modules should not depend on low level modules. both should depend on abstractions.
+	- abstractions should not depend on details; setails should depend on abstractions.
+	
+	- do not hold reference to a concrete class:
+	// this is bad
+	class Dog {}
+	class PetStore {
+		private pet:Dog;
+	}
+	// this is good
+	interface Animal {}
+	class PetStore {
+		pet:Animal;
+	}
+
+	- dont want to derive from concrete class:
+	abstract class AbstractDog {}
+	class Husky extends AbstractDog {}
+
+	- do not override implemented methods:
+	interface Barker {
+		bark():void;
+	}
+	class Dog implements Barker {
+		bark() { console.log('woof') }
+	}
+	class Husky implements Barker {
+		bark() { console.log('woof woof') }
+	}
+- Favor composition over inheritance
+	- make a shared interface to connect multiple classes 
+	- at facebook, we use react in thousands of components, and we havent found any use cases for inheritance 
+
+Inheritance 
+- use it to create more specialized versions of a class (dog and husky example)
+- inheritance is not the same as composition
+- composition is a 'has a' relationship. 
+	- A dog HAS A leg (composition). 
+	- A dog IS A leg (inheritance).
+- private methods and fields are not inherited
+- use 'protected' modifier for vars that are private except for subclasses
+	
+Interfaces vs Inheritance
+- use inheritance for common implementation (code)
+- use interfaces for common behavior (signatures)
+- but remember to program to interfaces not to implementations
+
+Abstract class
+- abstract classes are classes that can be extended but can still have abstract (unimplemented) methids like an interface
+	abstract class Animal {
+		abstract speak():void;
+		move() {
+			console.log('djkhg')
+		}
+	}
+	let pet:Animal = new Animal(); //cannot do this
+	class Dog extends Animal { 
+		speak() {
+			console.log('djkhg');
+		}
+	}
+	let pet:Animal = new Dog(); //you can do this because we have implemented speak() and it is no longer abstract
+
+
